@@ -17,18 +17,18 @@ namespace HotelListing.Core.Repository
             _db = _context.Set<T>();
         }
 
-        public async Task Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var entity = await _context.Set<T>().FindAsync(id);
             _db.Remove(entity);
         }
 
-        public void DeleteRange(IEnumerable<T> entities)
+        public void DeleteRangeAsync(IEnumerable<T> entities)
         {
             _db.RemoveRange(entities);
         }
 
-        public async Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = _db;
             if (include != null)
@@ -39,7 +39,7 @@ namespace HotelListing.Core.Repository
             return await query.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
-        public async Task<List<T>> GetAll(Expression<Func<T, bool>> expression = null,
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
@@ -62,18 +62,18 @@ namespace HotelListing.Core.Repository
 
             return await query.AsNoTracking().ToListAsync();
         }
-        public async Task<T> Insert(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             await _db.AddAsync(entity);
             return entity;
         }
 
-        public async Task InsertRange(IEnumerable<T> entities)
+        public async Task InsertRangeAsync(IEnumerable<T> entities)
         {
             await _db.AddRangeAsync(entities);
         }
 
-        public void Update(T entity)
+        public void UpdateAsync(T entity)
         {
             _db.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;

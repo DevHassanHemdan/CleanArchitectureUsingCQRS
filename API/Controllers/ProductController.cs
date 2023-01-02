@@ -17,6 +17,7 @@ namespace API.Controllers
         {
             _mediatR = mediatR;
         }
+
         [HttpGet("GetAllProducts")]
         public async Task<List<Product>> GetAllProducts()
         {
@@ -24,6 +25,7 @@ namespace API.Controllers
 
             return response;
         }
+
         [HttpGet("{id}")]
         public async Task<Product> GetProductById(Guid id)
         {
@@ -31,13 +33,15 @@ namespace API.Controllers
 
             return response;
         }
+
         [HttpPost("CreateProduct")]
-        public async Task<ProductDTO> CreateProduct(ProductDTO productDTo)
+        public async Task<ProductDTO> CreateProduct([FromBody] ProductDTO productDTo)
         {
             var response = await _mediatR.Send(new AddProductCommand(productDTo));
 
             return productDTo;
         }
+
         [HttpPost("DeleteProduct")]
         public async Task<int> DeleteProduct(Guid productId)
         {

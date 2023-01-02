@@ -15,7 +15,7 @@ namespace Application.CQRS.QueriesHandlers
 
         public async Task<Product> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            Product product = await _unitOfWork.Products.Get(x => x.Id == request.ProductId);
+            Product product = await _unitOfWork.Repository<Product>().GetAsync(x => x.Id == request.ProductId);
             return product;
         }
     }

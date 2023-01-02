@@ -22,8 +22,8 @@ namespace Application.CQRS.CommandsHandlers
             try
             {
                 Product product = _mapper.Map<Product>(request._product);
-                await _unitOfWork.Products.Insert(product);
-                await _unitOfWork.Save();
+                await _unitOfWork.Repository<Product>().CreateAsync(product);
+                await _unitOfWork.SaveAsync();
                 return request._product;
             }
             catch (Exception ex)

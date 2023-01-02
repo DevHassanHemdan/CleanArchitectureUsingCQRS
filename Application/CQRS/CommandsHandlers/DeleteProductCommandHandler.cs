@@ -1,5 +1,6 @@
 ﻿using Application.CQRS.Commands;
 using Application.IRepositories;
+using Domain;
 using MediatR;
 
 namespace Application.CQRS.CommandsHandlers
@@ -13,8 +14,8 @@ namespace Application.CQRS.CommandsHandlers
         }
         public async Task<int> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            await _unitOfWork.Products.Delete(request.ProductId);
-            return await _unitOfWork.Save();
+            await _unitOfWork.Repository<Product>().DeleteAsync(request.ProductId);
+            return await _unitOfWork.SaveAsync();
         }
     }
 }

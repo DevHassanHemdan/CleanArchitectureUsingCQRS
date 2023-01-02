@@ -5,17 +5,17 @@ namespace Application.IRepositories
 {
     public interface _IGenericRepository<T> where T : class
     {
-        Task<List<T>> GetAll(
+        Task<List<T>> GetAllAsync(
              Expression<Func<T, bool>> expression = null,
              Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
              Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null
           );
-        Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
-        Task<T> Insert(T entity);
-        Task InsertRange(IEnumerable<T> entities);
-        Task Delete(Guid id);
-        void DeleteRange(IEnumerable<T> entities);
-        void Update(T entity);
+        Task<T> GetAsync(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+        Task<T> CreateAsync(T entity);
+        Task InsertRangeAsync(IEnumerable<T> entities);
+        Task DeleteAsync(Guid id);
+        void DeleteRangeAsync(IEnumerable<T> entities);
+        void UpdateAsync(T entity);
 
     }
 }
