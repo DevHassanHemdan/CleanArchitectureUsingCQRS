@@ -12,6 +12,6 @@ namespace Application.IRepositories
     {
         public _IGenericRepository<Product> Products { get; }
         public _IGenericRepository<Categories> Categories { get;  }
-        Task Save();
+        Task<int> Save();
     }
 }

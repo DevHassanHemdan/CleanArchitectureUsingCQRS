@@ -28,7 +28,6 @@ namespace Application.CQRS.CommandsHandlers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 

@@ -8,7 +8,7 @@ namespace Application.CQRS.Queries
         public Guid ProductId { get; set; }
         public GetProductByIdQuery(Guid productId)
         {
-            ProductId = productId;  
+            ProductId = productId;
         }
     }
 }

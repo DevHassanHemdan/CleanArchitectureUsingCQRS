@@ -38,5 +38,10 @@ namespace API.Controllers
 
             return productDTo;
         }
+        [HttpPost("DeleteProduct")]
+        public async Task<int> DeleteProduct(Guid productId)
+        {
+            return await _mediatR.Send(new DeleteProductCommand(productId));
+        }
     }
 }
