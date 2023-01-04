@@ -10,7 +10,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductController
+    public class ProductController : ControllerBase
     {
         private readonly ISender _mediatR;
         public ProductController(ISender mediatR)

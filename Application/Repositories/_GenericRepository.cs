@@ -8,8 +8,8 @@ namespace HotelListing.Core.Repository
 {
     public class _GenericRepository<T> : _IGenericRepository<T> where T : class
     {
-        private readonly DataContext _context;
-        private readonly DbSet<T> _db;
+        public DataContext _context;
+        public  DbSet<T> _db;
 
         public _GenericRepository(DataContext context)
         {

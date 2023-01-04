@@ -1,10 +1,9 @@
 using Application.IRepositories;
 using Application.Repositories;
+using HotelListing.Core.Repository;
 using MediatR;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Presistance;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +19,12 @@ builder.Services.AddDbContext<DataContext>(opt =>
 });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddOptions();
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 //builder.Services.AddMediatR(typeof(Program).GetTypeInfo().Assembly);
-
+builder.Services.AddScoped(typeof(_IGenericRepository<>), typeof(_GenericRepository<>));
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
