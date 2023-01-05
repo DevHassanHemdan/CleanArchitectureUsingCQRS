@@ -6,12 +6,11 @@ namespace Domain
     {
         [Key]
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
         public Guid CreatedBy { get; set; }
-        public BaseClass()
-        {
-            Id = Guid.NewGuid(); 
-        }
+        //public BaseClass()
+        //{
+        //    Id = Guid.NewGuid(); 
+        //}
     }
 }

@@ -25,7 +25,7 @@ namespace Application.Repositories
             return await _context.SaveChangesAsync();
         }
         
-        public _IGenericRepository<T> Repository<T>() where T : class
+        public _IGenericRepository<T> Repository<T>() where T : BaseClass
         {
             return new _GenericRepository<T>(_context);
         }

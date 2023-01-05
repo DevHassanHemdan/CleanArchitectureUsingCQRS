@@ -1,4 +1,6 @@
 ﻿using Application.IRepositories;
+using Application.Specifications;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Presistance;
@@ -6,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace HotelListing.Core.Repository
 {
-    public class _GenericRepository<T> : _IGenericRepository<T> where T : class
+    public class _GenericRepository<T> : _IGenericRepository<T> where T : BaseClass
     {
         public DataContext _context;
         public  DbSet<T> _db;
@@ -77,6 +79,21 @@ namespace HotelListing.Core.Repository
         {
             _db.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public async Task<T> GetEntityWithSpec(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).FirstOrDefaultAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> ListAsyncWithSpec(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
+        }
+
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec) 
+        {
+            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);  
         }
     }
 }

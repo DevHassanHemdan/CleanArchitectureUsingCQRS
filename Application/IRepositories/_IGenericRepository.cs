@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using Application.Specifications;
+using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
 namespace Application.IRepositories
@@ -11,6 +12,8 @@ namespace Application.IRepositories
              Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null
           );
         Task<T> GetAsync(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+        Task<T> GetEntityWithSpec(ISpecification<T> spec);
+        Task<IReadOnlyList<T>> ListAsyncWithSpec(ISpecification<T> spec);
         Task<T> CreateAsync(T entity);
         Task InsertRangeAsync(IEnumerable<T> entities);
         Task DeleteAsync(Guid id);

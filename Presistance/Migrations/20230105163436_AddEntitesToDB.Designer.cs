@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Presistance;
 
@@ -11,9 +12,11 @@ using Presistance;
 namespace Presistance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230105163436_AddEntitesToDB")]
+    partial class AddEntitesToDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +51,10 @@ namespace Presistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategoryId")
+                    b.Property<Guid?>("CategoriesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CreatedBy")
@@ -74,19 +80,29 @@ namespace Presistance.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid?>("ProductBrandId")
+                    b.Property<Guid>("ProductBrandId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ProductTypeId")
+                    b.Property<Guid?>("ProductBrandId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProductTypeId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoriesId");
 
                     b.HasIndex("ProductBrandId");
 
+                    b.HasIndex("ProductBrandId1");
+
                     b.HasIndex("ProductTypeId");
+
+                    b.HasIndex("ProductTypeId1");
 
                     b.ToTable("Products");
                 });
@@ -135,15 +151,27 @@ namespace Presistance.Migrations
                 {
                     b.HasOne("Domain.Categories", "Categories")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoriesId");
 
                     b.HasOne("Domain.ProductBrand", "ProductBrand")
+                        .WithMany()
+                        .HasForeignKey("ProductBrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.ProductBrand", null)
                         .WithMany("Products")
-                        .HasForeignKey("ProductBrandId");
+                        .HasForeignKey("ProductBrandId1");
 
                     b.HasOne("Domain.ProductType", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.ProductType", null)
                         .WithMany("Products")
-                        .HasForeignKey("ProductTypeId");
+                        .HasForeignKey("ProductTypeId1");
 
                     b.Navigation("Categories");
 

@@ -1,5 +1,6 @@
 using Domain;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Presistance
 {
@@ -23,20 +24,21 @@ namespace Presistance
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Product>()
-                        .HasOne(c => c.Categories)
-                        .WithMany(p => p.Products)
-                        .HasForeignKey("CategoryId");
+            //modelBuilder.Entity<Categories>()
+            //            .HasData(
+            //                new Categories() { Id = Guid.NewGuid(), Name = "Mobiles" },
+            //                new Categories() { Id = Guid.NewGuid(), Name = "Watches" }
+            //            );
+            modelBuilder.Entity<ProductBrand>().HasKey(x => x.Id);
+            modelBuilder.Entity<ProductType>().HasKey(x => x.Id);
 
-            modelBuilder.Entity<Categories>()
-                        .HasData(
-                            new Categories() { Id = Guid.NewGuid(), Name = "Mobiles" },
-                            new Categories() { Id = Guid.NewGuid(), Name = "Watches" }
-                        );
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());  
 
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Categories> Categories { get; set; }
     }
 }

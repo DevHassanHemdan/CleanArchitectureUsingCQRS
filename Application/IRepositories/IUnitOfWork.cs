@@ -10,7 +10,7 @@ namespace Application.IRepositories
 {
     public interface IUnitOfWork
     {
-        _IGenericRepository<T> Repository<T>() where T : class;
+        _IGenericRepository<T> Repository<T>() where T : BaseClass;
         Task<int> SaveAsync();
     }
 }
