@@ -24,7 +24,8 @@ namespace Application.CQRS.CommandsHandlers
                 Product product = _mapper.Map<Product>(request._product);
                 await _unitOfWork.Repository<Product>().CreateAsync(product);
                 await _unitOfWork.SaveAsync();
-                return request._product;
+                ProductDTO productDTO = _mapper.Map<ProductDTO>(product);
+                return productDTO;
             }
             catch (Exception ex)
             {

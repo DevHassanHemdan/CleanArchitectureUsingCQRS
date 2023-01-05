@@ -11,15 +11,15 @@ namespace Application.DTOs
     public class ProductDTO
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public string ProductName { get; set; }
         public DateTime CreatedOn { get; set; }
         public Guid CreatedBy { get; set; }
         public float Price { get; set; }
         public string Description { get; set; }
+        public string PictureUrl { get; set; }
         public Guid CategoryId { get; set; }
-        public ProductDTO()
-        {
-            Id = Guid.NewGuid();
-        }
+        public Guid ProductTypeId { get; set; }
+        public Guid ProductBrandId { get; set; }
+
     }
 }

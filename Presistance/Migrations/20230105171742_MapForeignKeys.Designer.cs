@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Presistance;
 
@@ -11,9 +12,11 @@ using Presistance;
 namespace Presistance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230105171742_MapForeignKeys")]
+    partial class MapForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,10 +51,7 @@ namespace Presistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategoriesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CreatedBy")
@@ -77,15 +77,15 @@ namespace Presistance.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("ProductBrandId")
+                    b.Property<Guid?>("ProductBrandId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductTypeId")
+                    b.Property<Guid?>("ProductTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriesId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ProductBrandId");
 
@@ -138,19 +138,15 @@ namespace Presistance.Migrations
                 {
                     b.HasOne("Domain.Categories", "Categories")
                         .WithMany("Products")
-                        .HasForeignKey("CategoriesId");
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Domain.ProductBrand", "ProductBrand")
                         .WithMany("Products")
-                        .HasForeignKey("ProductBrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductBrandId");
 
                     b.HasOne("Domain.ProductType", "ProductType")
                         .WithMany("Products")
-                        .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductTypeId");
 
                     b.Navigation("Categories");
 
