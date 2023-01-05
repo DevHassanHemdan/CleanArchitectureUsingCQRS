@@ -15,8 +15,6 @@ namespace Domain
         [ForeignKey("ProductBrandId")]
         public ProductBrand ProductBrand { get; set; }
 
-
-        //public Guid CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Categories Categories { get; set; }
     }
