@@ -14,7 +14,7 @@ namespace Domain
 
         public Guid ProductBrandId { get; set; }
         public ProductBrand ProductBrand { get; set; }
-        public Guid CategoryId { get; set; }
+        public Guid CategoriesId { get; set; }
         public Categories Categories { get; set; }
     }
 }

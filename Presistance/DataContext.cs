@@ -34,9 +34,59 @@ namespace Presistance
 
             modelBuilder.Entity<Product>()
                        .HasOne(e => e.ProductType)
-                       .WithMany(c => c.Products); 
+                       .WithMany(c => c.Products);
+
+            modelBuilder.Entity<Categories>()
+                        .HasMany(p => p.Products)
+                        .WithOne(c => c.Categories)
+                        .HasForeignKey(c => c.CategoriesId);
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.Entity<Categories>()
+                .HasData(new Categories
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Mobiles"
+                }, new Categories
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Tvs"
+                }, new Categories
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Watches"
+                });
+
+            modelBuilder.Entity<ProductType>()
+                .HasData(new ProductType
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "ProductType 1"
+                }, new ProductType
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "ProductType 2"
+                }, new ProductType
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "ProductType 3"
+                });
+
+            modelBuilder.Entity<ProductBrand>()
+                .HasData(new ProductBrand
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Apple"
+                }, new ProductBrand
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Samsung"
+                }, new ProductBrand
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Nokia"
+                });
 
             base.OnModelCreating(modelBuilder);
         }
