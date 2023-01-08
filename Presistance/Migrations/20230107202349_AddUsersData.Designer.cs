@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Presistance;
 
@@ -11,9 +12,11 @@ using Presistance;
 namespace Presistance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230107202349_AddUsersData")]
+    partial class AddUsersData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,6 +43,29 @@ namespace Presistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("666d9127-f0bd-48e9-9fbc-dc9cf257b522"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9227),
+                            Name = "Mobiles"
+                        },
+                        new
+                        {
+                            Id = new Guid("27a8c969-1f7b-4253-a69a-fb054669ec42"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9275),
+                            Name = "Tvs"
+                        },
+                        new
+                        {
+                            Id = new Guid("5b684242-a023-4cac-851b-aa129aa9dba6"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9278),
+                            Name = "Watches"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Product", b =>
@@ -109,6 +135,29 @@ namespace Presistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductBrands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1f38ec05-3d12-4ae3-b674-31c0e3e6aa0f"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9460),
+                            Name = "Apple"
+                        },
+                        new
+                        {
+                            Id = new Guid("70bc1481-f0d0-40ef-8216-ce7ffb2ace41"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9465),
+                            Name = "Samsung"
+                        },
+                        new
+                        {
+                            Id = new Guid("48ee7744-8046-4658-8c2c-354786871e89"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9467),
+                            Name = "Nokia"
+                        });
                 });
 
             modelBuilder.Entity("Domain.ProductType", b =>
@@ -129,6 +178,29 @@ namespace Presistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("75e6524b-be27-4dd1-86f7-4f7c204e0162"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9433),
+                            Name = "ProductType 1"
+                        },
+                        new
+                        {
+                            Id = new Guid("eccf3730-c5d3-4719-b7ce-3033eacdf904"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9438),
+                            Name = "ProductType 2"
+                        },
+                        new
+                        {
+                            Id = new Guid("dcda2e96-74f4-4764-892e-443020a756bd"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 22, 23, 49, 377, DateTimeKind.Local).AddTicks(9441),
+                            Name = "ProductType 3"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Users", b =>

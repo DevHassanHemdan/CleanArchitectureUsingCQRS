@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Presistance;
 
@@ -11,9 +12,11 @@ using Presistance;
 namespace Presistance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230107110729_AddDataIdentityTables")]
+    partial class AddDataIdentityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,6 +43,29 @@ namespace Presistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2c76607e-f46f-4ad2-8ea8-d55c8407bd17"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4637),
+                            Name = "Mobiles"
+                        },
+                        new
+                        {
+                            Id = new Guid("c4d41bfc-0ca8-4a1d-ade0-607fa3131914"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4684),
+                            Name = "Tvs"
+                        },
+                        new
+                        {
+                            Id = new Guid("d292fe6e-cc0c-4a61-a9c4-223bd0565ac7"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4687),
+                            Name = "Watches"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Product", b =>
@@ -109,6 +135,29 @@ namespace Presistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductBrands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("15ca1443-27a4-4f04-91b0-2e1c17c33fde"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4878),
+                            Name = "Apple"
+                        },
+                        new
+                        {
+                            Id = new Guid("61748f41-1e0f-49f6-8bc3-318c42e3cf8f"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4882),
+                            Name = "Samsung"
+                        },
+                        new
+                        {
+                            Id = new Guid("6efa7777-6c4d-47ee-930a-ae508239256d"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4884),
+                            Name = "Nokia"
+                        });
                 });
 
             modelBuilder.Entity("Domain.ProductType", b =>
@@ -129,6 +178,29 @@ namespace Presistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3cebc6c7-4ee4-4130-81db-fd752e3ca86b"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4855),
+                            Name = "ProductType 1"
+                        },
+                        new
+                        {
+                            Id = new Guid("5ada2b42-6795-4195-a3e3-0e4c7dc5bc57"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4859),
+                            Name = "ProductType 2"
+                        },
+                        new
+                        {
+                            Id = new Guid("7e06bb66-7c77-413a-b3c4-6c54a0de1ea8"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2023, 1, 7, 13, 7, 28, 898, DateTimeKind.Local).AddTicks(4861),
+                            Name = "ProductType 3"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Users", b =>
@@ -208,6 +280,23 @@ namespace Presistance.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "4ddb7071-40ad-4a51-aeff-39f611aee3cf",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e3b85295-9a98-49ee-8494-061409256fd3",
+                            Email = "hassanhemdan92@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Hassan",
+                            LastName = "Hemdan",
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c2c58345-c331-46e7-802f-cc0c30b15a7a",
+                            TwoFactorEnabled = false,
+                            UserName = "Hassan Hemdan"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

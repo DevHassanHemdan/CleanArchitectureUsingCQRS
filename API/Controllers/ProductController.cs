@@ -4,24 +4,22 @@ using Application.DTOs;
 using AutoMapper;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseController
     {
-        private readonly ISender _mediatR;
-        public ProductController(ISender mediatR)
-        {
-            _mediatR = mediatR;
-        }
-
+        
         [HttpGet("GetAllProducts")]
+        //[Authorize]
         public async Task<List<Product>> GetAllProducts()
         {
-            var response = await _mediatR.Send(new GetAllProductsQuery());
+            var response = await Mediator.Send(new GetAllProductsQuery());
 
             return response;
         }
@@ -29,7 +27,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<Product> GetProductById(Guid id)
         {
-            var response = await _mediatR.Send(new GetProductByIdQuery(id));
+            var response = await Mediator.Send(new GetProductByIdQuery(id));
 
             return response;
         }
@@ -37,7 +35,8 @@ namespace API.Controllers
         [HttpPost("CreateProduct")]
         public async Task<ProductDTO> CreateProduct([FromBody] ProductDTO productDTo)
         {
-            var response = await _mediatR.Send(new AddProductCommand(productDTo));
+            var user = _userManager.GetUserAsync(HttpContext.User);
+            var response = await Mediator.Send(new AddProductCommand(productDTo));
 
             return productDTo;
         }
@@ -45,7 +44,7 @@ namespace API.Controllers
         [HttpPost("DeleteProduct")]
         public async Task<int> DeleteProduct(Guid productId)
         {
-            return await _mediatR.Send(new DeleteProductCommand(productId));
+            return await Mediator.Send(new DeleteProductCommand(productId));
         }
     }
 }

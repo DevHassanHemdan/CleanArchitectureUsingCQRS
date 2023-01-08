@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presistance", "Presistance\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{2C73A957-E35F-4327-9EDB-AA35A50A79AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C43ADC51-04A6-4CEF-8E77-5877A0217471}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{2C73A957-E35F-4327-9EDB-AA35A50A79AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C73A957-E35F-4327-9EDB-AA35A50A79AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C73A957-E35F-4327-9EDB-AA35A50A79AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C43ADC51-04A6-4CEF-8E77-5877A0217471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C43ADC51-04A6-4CEF-8E77-5877A0217471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C43ADC51-04A6-4CEF-8E77-5877A0217471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C43ADC51-04A6-4CEF-8E77-5877A0217471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -3,24 +3,22 @@ using Application.CQRS.Queries;
 using Application.DTOs;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoryController : BaseController
     {
-        private readonly ISender _mediatR;
-        public CategoryController(ISender mediatR)
-        {
-            _mediatR = mediatR;
-        }
-
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("GetAllCategories")]
+       
         public async Task<List<CategoriesDTO>> GetAllCategories()
         {
-            var response = await _mediatR.Send(new GetAllCategoriesQuery());
+            var response = await Mediator.Send(new GetAllCategoriesQuery());
 
             return response;
         }
@@ -28,7 +26,7 @@ namespace API.Controllers
         [HttpPost("CreateProduct")]
         public async Task<CategoriesDTO> CreateProduct([FromBody] CategoriesDTO categoriesDTO)
         {
-            var response = await _mediatR.Send(new AddCategoryCommand(categoriesDTO));
+            var response = await Mediator.Send(new AddCategoryCommand(categoriesDTO));
 
             return response;
         }

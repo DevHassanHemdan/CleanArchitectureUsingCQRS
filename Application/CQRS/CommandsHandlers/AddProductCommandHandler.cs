@@ -4,6 +4,8 @@ using Application.IRepositories;
 using AutoMapper;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.CQRS.CommandsHandlers
 {
@@ -11,6 +13,7 @@ namespace Application.CQRS.CommandsHandlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+       
         public AddProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
