@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : BaseController
@@ -23,8 +23,8 @@ namespace API.Controllers
             return response;
         }
 
-        [HttpPost("CreateProduct")]
-        public async Task<CategoriesDTO> CreateProduct([FromBody] CategoriesDTO categoriesDTO)
+        [HttpPost("CreateCategory")]
+        public async Task<CategoriesDTO> CreateCategory([FromBody] CategoriesDTO categoriesDTO)
         {
             var response = await Mediator.Send(new AddCategoryCommand(categoriesDTO));
 

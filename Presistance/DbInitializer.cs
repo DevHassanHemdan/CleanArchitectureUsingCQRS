@@ -64,15 +64,18 @@ namespace Presistance
                             new Categories()
                             {
                                 Id = Guid.NewGuid(),
-                                Name = "Mobiles"
+                                Name = "Mobiles",
+                                CreatedOn = DateTime.Now
                             }, new Categories()
                             {
                                  Id = Guid.NewGuid(),
-                                Name = "Tvs"
+                                Name = "Tvs",
+                                CreatedOn = DateTime.Now
                             }, new Categories()
                             {
                                 Id = Guid.NewGuid(),
-                                Name = "Watches"
+                                Name = "Watches",
+                                CreatedOn = DateTime.Now
                             }
 
                         };
@@ -86,15 +89,18 @@ namespace Presistance
                             new ProductBrand()
                             {
                                 Id = Guid.NewGuid(),
-                                Name = "Apple"
+                                Name = "Apple",
+                                CreatedOn = DateTime.Now
                             }, new ProductBrand()
                             {
                                  Id = Guid.NewGuid(),
-                                Name = "Samsung"
+                                Name = "Samsung",
+                                CreatedOn = DateTime.Now
                             }, new ProductBrand()
                             {
                                 Id = Guid.NewGuid(),
-                                Name = "Nokia"
+                                Name = "Nokia",
+                                CreatedOn = DateTime.Now
                             }
 
                         };
@@ -108,15 +114,18 @@ namespace Presistance
                             new ProductType()
                             {
                                 Id = Guid.NewGuid(),
-                                Name = "Type 1"
+                                Name = "Type 1",
+                                CreatedOn = DateTime.Now
                             }, new ProductType()
                             {
                                  Id = Guid.NewGuid(),
-                                Name = "Type 2"
+                                Name = "Type 2",
+                                CreatedOn = DateTime.Now
                             }, new ProductType()
                             {
                                 Id = Guid.NewGuid(),
-                                Name = "Type 3"
+                                Name = "Type 3",
+                                CreatedOn = DateTime.Now
                             }
 
                         };

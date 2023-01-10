@@ -35,13 +35,37 @@ namespace Presistance
                        .WithMany(c => c.Products);
 
             modelBuilder.Entity<Product>()
+                .Property(x => x.Id)
+                .HasColumnName("ProductId");
+
+            modelBuilder.Entity<ProductType>()
+                .Property(x => x.Id)
+                .HasColumnName("ProductTypeId");
+
+            modelBuilder.Entity<Product>()
                        .HasOne(e => e.ProductType)
                        .WithMany(c => c.Products);
 
             modelBuilder.Entity<Categories>()
                         .HasMany(p => p.Products)
                         .WithOne(c => c.Categories)
-                        .HasForeignKey(c => c.CategoriesId);
+                        .HasForeignKey(c => c.CategoryId);
+
+            modelBuilder.Entity<Product>()
+                    .Property(x => x.CreatedOn)
+                    .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<ProductType>()
+                    .Property(x => x.CreatedOn)
+                    .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<ProductBrand>()
+                    .Property(x => x.CreatedOn)
+                    .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<Categories>()
+                    .Property(x => x.CreatedOn)
+                    .HasDefaultValueSql("GETDATE()");
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
